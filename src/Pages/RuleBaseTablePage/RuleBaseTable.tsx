@@ -10,7 +10,7 @@ const RuleBaseTablePage = () => {
   const {
     rules, setRules, updateRule,
     page, setPage, totalCount, PAGE_SIZE,
-    searchTerm, setSearchTerm,
+    searchTerm, setSearchTerm, destnameChangeTerm, setDestNameChangeTerm,
     savePolicy, loading
   } = usePolicyRules();
 
@@ -29,7 +29,9 @@ const RuleBaseTablePage = () => {
       <Typography variant="h5" mb={2}>Policy Rules</Typography>
 
       <ToolbarControls
+        destnameChangeTerm={destnameChangeTerm}
         searchTerm={searchTerm}
+        onDestChange={setDestNameChangeTerm}
         onSearchChange={setSearchTerm}
         onAddRule={addNewRule}
         onSave={savePolicy}

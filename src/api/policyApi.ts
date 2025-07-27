@@ -5,7 +5,8 @@ export const fetchPolicies = async (
   offset: number,
   limit: number,
   sortBy: string,
-  search: string
+  search: string,
+  destination: string
 ) => {
   try {
     const res = await api.get('/policies', {
@@ -14,6 +15,7 @@ export const fetchPolicies = async (
         limit,
         sort: sortBy,
         sourceName: search,
+        destinationName: destination
       },
     });
 

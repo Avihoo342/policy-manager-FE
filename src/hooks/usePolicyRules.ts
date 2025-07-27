@@ -10,12 +10,13 @@ export const usePolicyRules = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [destnameChangeTerm, setDestNameChangeTerm] = useState('');
 
   const fetchRules = useCallback(async () => {
     setLoading(true);
     try {
       const offset = (page - 1) * PAGE_SIZE;
-      const result = await policyApi.fetchPolicies(offset, PAGE_SIZE, 'ruleIndex', searchTerm);
+      const result = await policyApi.fetchPolicies(offset, PAGE_SIZE, 'ruleIndex', searchTerm, destnameChangeTerm);
       setRules(result.data);
       setTotalCount(result.totalCount);
     } catch (err) {
@@ -23,7 +24,7 @@ export const usePolicyRules = () => {
     } finally {
       setLoading(false);
     }
-  }, [page, searchTerm]);
+  }, [page, searchTerm, destnameChangeTerm]);
 
   useEffect(() => {
     fetchRules();
@@ -67,6 +68,8 @@ const savePolicy = async () => {
     totalCount,
     searchTerm,
     setSearchTerm,
+    destnameChangeTerm,
+    setDestNameChangeTerm,
     updateRule,
     setRules,
     savePolicy,
